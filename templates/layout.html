@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Acids Blog</title>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2|Open+Sans" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type=text/css>
+    <link href="{{ url_for('static', filename='code-styles.css') }}" rel="stylesheet" type=text/css>
+</head>
+<body>
+    <div id="sidebar-container">
+        <div id="logo">
+            <a href="{{ url_for('index') }}">// Home</a>
+        </div>
+        <div id="sidebar">
+            {% block sidebar %}{% endblock %}
+        </div>
+    </div>
+    <div id="content-wrapper">
+        <div id="grid-container">
+            <div id="header">
+                {% block header %}{% endblock %}
+            </div>
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+            <div id="infobar">
+                {% block infobar %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

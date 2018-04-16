@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block sidebar %}
+    <h3>Table of Contents</h3>
+    {{ post.toc|safe }}
+{% endblock %}
+
+{% block header %}
+    <h1>{{ post.title }}</h1>
+{% endblock %}
+            
+{% block content %}
+    {{ post.html|safe }}
+{% endblock %}
+
+{% block infobar %}
+    <ul>
+        <li><h3>Archive</h3></li>
+        <li><a href="#">2016</a></li>
+        <li><a href="#">2017</a></li>
+        <li><a href="#">2018</a></li>
+    </ul>
+{% endblock %}
