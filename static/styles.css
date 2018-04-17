@@ -49,11 +49,24 @@ a {
     text-indent: -1em;
 }
 
-#logo {
+#logo-container {
     height: 100px;
-    text-align: center;
-    line-height: 100px;
     background: #6a8fb7;
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#home-link {
+    color: #ffffff;
+    font-size: 20pt;
+    font-family: 'Inconsolata', monospace;
+    margin: 0em;
+    padding: 0em;
 }
 
 #content-wrapper {
@@ -71,7 +84,7 @@ a {
     
     display: grid;
     grid-template-columns: 2.5fr 1fr;
-    grid-template-rows: 100px auto;/*calc(100vh - 100px);1fr;*/
+    grid-template-rows: 100px auto;
     
     background: #ffffff;
     overflow: auto;

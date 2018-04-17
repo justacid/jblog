@@ -3,15 +3,24 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Acids Blog</title>
+    <title>Justacid's Blog</title>
+
     <link href="https://fonts.googleapis.com/css?family=Exo+2|Open+Sans" rel="stylesheet">
-    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type=text/css>
-    <link href="{{ url_for('static', filename='code-styles.css') }}" rel="stylesheet" type=text/css>
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='code-styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
     <div id="sidebar-container">
-        <div id="logo">
-            <a href="{{ url_for('index') }}">// Home</a>
+        <div id="logo-container">
+            <div id="logo">
+                <a href="{{ url_for('index') }}"> 
+                    <img src="{{ url_for('static', filename="logo.png") }}"/>
+                </a>
+            </div>
+            <a id="home-link" href="{{ url_for('index') }}">justacid</a>
         </div>
         <div id="sidebar">
             {% block sidebar %}{% endblock %}
