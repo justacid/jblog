@@ -44,6 +44,7 @@ a {
 
 #sidebar {
     padding-left: 2em;
+    padding-bottom: 1em;
     color: #e0e0e0;
     font-size: 15px;
     text-indent: -1em;
@@ -119,4 +120,27 @@ a {
     border: dotted;
     border-width: 1px;
     padding-left: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+    #sidebar-container {
+        position: static;
+        width: 100vw;
+        height: auto;
+    }
+
+    #content-wrapper {
+        position: static;
+        height: auto;
+        margin-left: 0px;
+    }
+
+    #content {
+        grid-column: 1 /span 2;
+        height: auto;
+    }
+
+    #infobar {
+        visibility: hidden;
+    }
 }
