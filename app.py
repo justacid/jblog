@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, abort
 from post import Post, load_posts, posts_by_year
+from werkzeug.contrib.atom import AtomFeed
+import datetime
 
 
 app = Flask(__name__)
@@ -23,6 +25,19 @@ def render_post():
         abort(404)
 
     return render_template("post.html", post=post, posts=posts_by_year(posts))
+
+
+@app.route("/feed")
+def feed():
+    posts = load_posts("static/posts/")
+    feed = AtomFeed(title="Recent Articles", feed_url=request.url, url=request.url_root)
+
+    for post in posts[:min(10, len(posts))]:
+        feed.add(post.title, post.html, content_type="html",
+                 url=f"{request.url_root}/post?id={post.post_id}",
+                 updated=post.date, published=post.date)
+
+    return feed.get_response()
 
 
 @app.errorhandler(404)
