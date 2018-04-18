@@ -1,27 +1,24 @@
 {% extends "layout.html" %}
 
 {% block sidebar %}
+    {{ super() }}
 {% endblock %}
 
 {% block header %}
-    <h1>Blog Posts</h1>
+    <h1>All Posts</h1>
 {% endblock %}
             
 {% block content %}
-    <h2>All Blog Posts</h2>
-    <ul class="titles">
-        {% for post in posts %}
-            <li><a href="post?id={{post.identifier}}">{{ post.title }}</a></li>
-        {% endfor %}
-    </ul>
-    <p>
-{% endblock %}
+    <h2>Newest post</h2>
+    <a href="post?id={{newest.post_id}}">{{ newest.title }}</a>
 
-{% block infobar %}
-    <ul>
-        <li><h3>Archive</h3></li>
-        <li><a href="#">2016</a></li>
-        <li><a href="#">2017</a></li>
-        <li><a href="#">2018</a></li>
-    </ul>
+    <h2>Older posts</h2>
+    {% for year in posts %}
+        <h3 id="{{ year }}">{{ year }}</h3>
+        <ul>
+        {% for post in posts[year] %}
+            <li><a href="post?id={{post.post_id}}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
 {% endblock %}

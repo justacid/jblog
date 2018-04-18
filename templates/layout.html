@@ -23,7 +23,16 @@
             <a id="home-link" href="{{ url_for('index') }}">justacid</a>
         </div>
         <div id="sidebar">
-            {% block sidebar %}{% endblock %}
+            {% block sidebar %}
+                <h3>Navigation</h3>
+                <div class="toc">
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            {% endblock %}
         </div>
     </div>
     <div id="content-wrapper">
@@ -35,7 +44,12 @@
                 {% block content %}{% endblock %}
             </div>
             <div id="infobar">
-                {% block infobar %}{% endblock %}
+                <ul>
+                    <li><h3>Archive</h3></li>
+                    {% for year in posts %}
+                        <li><a href="{{ url_for('index') }}#{{ year }}">{{ year }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
