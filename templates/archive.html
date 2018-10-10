@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block header %}
+    <h1>Archive</h1>
+{% endblock %}
+            
+{% block content %}
+    <h2>All Posts {% if tag_filter %} with Tag '{{ tag_filter }}' {% endif %} </h2>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{{ url_for('post_page', id=post.rowid) }} ">{{ post.title}}</a> - {{ post.published }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block infobar %}
+    <ul>
+        <li><h3>All Tags</h3></li>
+        {% for tag in tags %}
+            <li><a href="{{ url_for('archive_page', tag=tag.tag) }}">{{ tag.tag }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Justacid's Blog</title>
+    <title>JBlog</title>
 
     <link href="https://fonts.googleapis.com/css?family=Exo+2|Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
@@ -12,26 +12,25 @@
     <link href="{{ url_for('static', filename='code-styles.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url_for('static', filename='favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
 
-    <link rel="alternate" type="application/atom+xml" title="justacid's blog" href="{{ url_for('feed') }}">
+    <link rel="alternate" type="application/atom+xml" title="justacid's blog" href="{{ url_for('feed_page') }}">
 </head>
 <body>
     <div id="sidebar-container">
         <div id="logo-container">
             <div id="logo">
-                <a href="{{ url_for('index') }}"> 
+                <a href="{{ url_for('index_page') }}"> 
                     <img src="{{ url_for('static', filename="logo.png") }}"/>
                 </a>
             </div>
-            <a id="home-link" href="{{ url_for('index') }}">justacid</a>
+            <a id="home-link" href="{{ url_for('index_page') }}">./jblog</a>
         </div>
         <div id="sidebar">
             {% block sidebar %}
-                <h3>Navigation</h3>
+                <h3>Links</h3>
                 <div class="toc">
                     <ul>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ url_for('archive_page') }}">Archive</a></li>
+                        <li><a href="{{ url_for('about_page') }}">About</a></li>
                     </ul>
                 </div>
             {% endblock %}
@@ -46,12 +45,7 @@
                 {% block content %}{% endblock %}
             </div>
             <div id="infobar">
-                <ul>
-                    <li><h3>Archive</h3></li>
-                    {% for year in posts %}
-                        <li><a href="{{ url_for('index') }}#{{ year }}">{{ year }}</a></li>
-                    {% endfor %}
-                </ul>
+                {% block infobar %}{% endblock %}
             </div>
         </div>
     </div>

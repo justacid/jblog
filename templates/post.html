@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block sidebar %}
+    {{ super() }}
     <h3>Table of Contents</h3>
     {{ post.toc|safe }}
 {% endblock %}
@@ -10,14 +11,25 @@
 {% endblock %}
             
 {% block content %}
+    <div class="published">Published: {{ post.published }}</div>
+    {% if post.last_modified %}
+        <div class="last-modified">Last Modified: {{ post.last_modified }}</div>
+    {% endif %}
     {{ post.html|safe }}
 {% endblock %}
 
 {% block infobar %}
     <ul>
-        <li><h3>Archive</h3></li>
-        <li><a href="#">2016</a></li>
-        <li><a href="#">2017</a></li>
-        <li><a href="#">2018</a></li>
+        <li><h3>Tags</h3></li>
+        {% for tag in tags %}
+            <li><a href="{{ url_for('archive_page', tag=tag.tag) }}">{{ tag.tag }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <li><h3>Older Posts</h3></li>
+        {% for post in older_posts %}
+            <li><a href="{{ url_for('post_page', id=post.rowid) }}">{{ post.title }}</a></li>
+        {% endfor %}
     </ul>
 {% endblock %}

@@ -116,6 +116,18 @@ a {
     padding-right: 1em;
 }
 
+.last-modified {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 70%;
+    color: #325182;
+}
+
+.published {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 70%;
+    color: #325182;
+}
+
 .codehilite {
     border: dotted;
     border-width: 1px;
