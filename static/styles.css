@@ -1,14 +1,11 @@
 body {
     margin: 0;
     background: #f7f7f7;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1, h2, h3 {
-    font-family: 'Exo 2', sans-serif;
-}
-
-p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Proza Libre', sans-serif;
 }
 
 a {
@@ -75,8 +72,9 @@ a {
 
 #home-link {
     color: #ffffff;
-    font-size: 20pt;
-    font-family: 'Inconsolata', monospace;
+    font-size: 2.5em;
+    /* font-family: 'Inconsolata', monospace; */
+    font-family: 'Indie Flower';
 }
 
 #grid-container {
