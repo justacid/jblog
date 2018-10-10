@@ -2,8 +2,10 @@
 
 {% block sidebar %}
     {{ super() }}
-    <h3>Table of Contents</h3>
-    {{ post.toc|safe }}
+    <div class="toc">
+        <h3>Table of Contents</h3>
+        {{ post.toc|safe }}
+    </div>
 {% endblock %}
 
 {% block header %}

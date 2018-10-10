@@ -36,9 +36,6 @@ a {
 }
 
 #sidebar-container {
-    position: fixed;
-    width: 250px;
-    height: 100%;
     background: #60605e;
 }
 
@@ -46,12 +43,11 @@ a {
     padding-left: 2em;
     padding-bottom: 1em;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 0.9em;
     text-indent: -1em;
 }
 
 #logo-container {
-    height: 100px;
     background: #6a8fb7;
     display: flex;
     align-items: center;
@@ -66,33 +62,22 @@ a {
     color: #ffffff;
     font-size: 20pt;
     font-family: 'Inconsolata', monospace;
-    margin: 0em;
-    padding: 0em;
-}
-
-#content-wrapper {
-    height: 100vh;
-    margin-left: 250px;
-    position: relative;
-    overflow: auto;
-    z-index: 1;
 }
 
 #grid-container {
-    overflow: auto;
-    min-width: auto;
-    max-width: 900px;
-    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
     display: grid;
-    grid-template-columns: 2.5fr 1fr;
-    grid-template-rows: 100px auto;
-    
+    grid-template-columns: 1fr 3.0fr 1fr;
+    grid-template-rows: 100px minmax(75vh, max-content);
     background: #ffffff;
-    overflow: auto;
 }
 
 #header {
-    grid-column: 1 /span 2;
+    grid-column: 2 /span 2;
     border-bottom: solid;
     border-width: 1px;
     margin-left: 1em;
@@ -103,8 +88,6 @@ a {
 }
 
 #content {
-    height: 100vh;
-    overflow-y: hidden;
     padding-left: 1em;
     padding-right: 1em;
     margin-bottom: 2em;
@@ -134,25 +117,26 @@ a {
     padding-left: 1em;
 }
 
-@media only screen and (max-width: 600px) {
-    #sidebar-container {
-        position: static;
-        width: 100vw;
-        height: auto;
+@media only screen and (max-width: 800px) {
+
+    #grid-container {
+        box-shadow: 0;
+        margin: 0 auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto max-content;
     }
 
-    #content-wrapper {
-        position: static;
-        height: auto;
-        margin-left: 0px;
+    #header {
+        grid-column: 1;
+        grid-row: 3;
     }
 
     #content {
-        grid-column: 1 /span 2;
-        height: auto;
+        grid-column: 1;
+        grid-row: 4;
     }
 
     #infobar {
-        visibility: hidden;
+        grid-row: 5;
     }
 }

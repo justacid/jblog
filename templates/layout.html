@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>JBlog</title>
 
     <link href="https://fonts.googleapis.com/css?family=Exo+2|Open+Sans" rel="stylesheet">
@@ -15,7 +16,7 @@
     <link rel="alternate" type="application/atom+xml" title="justacid's blog" href="{{ url_for('feed_page') }}">
 </head>
 <body>
-    <div id="sidebar-container">
+    <div id="grid-container">
         <div id="logo-container">
             <div id="logo">
                 <a href="{{ url_for('index_page') }}"> 
@@ -24,29 +25,27 @@
             </div>
             <a id="home-link" href="{{ url_for('index_page') }}">./jblog</a>
         </div>
-        <div id="sidebar">
-            {% block sidebar %}
-                <h3>Links</h3>
-                <div class="toc">
-                    <ul>
-                        <li><a href="{{ url_for('archive_page') }}">Archive</a></li>
-                        <li><a href="{{ url_for('about_page') }}">About</a></li>
-                    </ul>
-                </div>
-            {% endblock %}
+        <div id="header">
+            {% block header %}{% endblock %}
         </div>
-    </div>
-    <div id="content-wrapper">
-        <div id="grid-container">
-            <div id="header">
-                {% block header %}{% endblock %}
+        <div id="sidebar-container">
+            <div id="sidebar">
+                {% block sidebar %}
+                    <div class="navi">
+                        <h3>Links</h3>
+                        <ul>
+                            <li><a href="{{ url_for('archive_page') }}">Archive</a></li>
+                            <li><a href="{{ url_for('about_page') }}">About</a></li>
+                        </ul>
+                    </div>
+                {% endblock %}
             </div>
-            <div id="content">
-                {% block content %}{% endblock %}
-            </div>
-            <div id="infobar">
-                {% block infobar %}{% endblock %}
-            </div>
+        </div>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="infobar">
+            {% block infobar %}{% endblock %}
         </div>
     </div>
 </body>
