@@ -34,7 +34,7 @@ def feed():
 
     for post in posts[:min(10, len(posts))]:
         feed.add(post.title, post.html, content_type="html",
-                 url=f"{request.url_root}/post?id={post.post_id}",
+                 url="{0}/post?id={1}".format(request.url_root, post.post_id),
                  updated=post.date, published=post.date)
 
     return feed.get_response()
