@@ -1,3 +1,6 @@
+# Configs
+config.cfg
+
 ### Python ###
 __pycache__/
 *.py[cod]
