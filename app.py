@@ -20,9 +20,8 @@ def index_page():
         return render_template("index.html", post=posts[0], older_posts=posts, tags=tags)
 
 
-@app.route("/post", methods=["GET"])
-def post_page():
-    post_id = request.args["id"]
+@app.route("/post/id/<int:post_id>")
+def post_page(post_id):
     with db.session_context() as session:
         post = session.query(db.Post).get(post_id)
         posts = session.query(db.Post).order_by(db.Post.published.desc()).limit(10)
@@ -49,19 +48,21 @@ def feed_page():
         return feed.get_response()
 
 
-@app.route("/archive", methods=["GET"])
-def archive_page():
-    tag_filter = request.args.get("tag", None)
+@app.route("/archive")
+@app.route("/archive/tag/<string:tag>")
+def archive_page(tag=None):
     with db.session_context() as session:
-        if tag_filter:
+        if tag:
             posts = session.query(db.Post).join(
                 db.Post2Tag, db.Post.rowid == db.Post2Tag.post_id).join(
                     db.Tag, db.Tag.rowid == db.Post2Tag.tag_id).filter(
-                        db.Tag.tag == tag_filter).all()
+                        db.Tag.tag == tag).all()
+            if not posts:
+                abort(404)
         else:
             posts = session.query(db.Post).order_by(db.Post.published).all()
         tags = session.query(db.Tag).all()
-        return render_template("archive.html", tags=tags, posts=posts, tag_filter=tag_filter)
+        return render_template("archive.html", tags=tags, posts=posts, tag_filter=tag)
 
 
 @app.route("/about")

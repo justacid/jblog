@@ -8,7 +8,7 @@
     <h2>All Posts {% if tag_filter %} with Tag '{{ tag_filter }}' {% endif %} </h2>
     <ul>
         {% for post in posts %}
-            <li><a href="{{ url_for('post_page', id=post.rowid) }} ">{{ post.title}}</a> - {{ post.published }}</li>
+            <li><a href="{{ url_for('post_page', post_id=post.rowid) }} ">{{ post.title}}</a> - {{ post.published }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

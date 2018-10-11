@@ -31,7 +31,7 @@
     <ul>
         <li><h3>Older Posts</h3></li>
         {% for post in older_posts %}
-            <li><a href="{{ url_for('post_page', id=post.rowid) }}">{{ post.title }}</a></li>
+            <li><a href="{{ url_for('post_page', post_id=post.rowid) }}">{{ post.title }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
