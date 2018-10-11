@@ -1,11 +1,10 @@
 {% extends "layout.html" %}
 
-
 {% block header %}
     <h1>Page Not Found</h1>
 {% endblock %}
 
 {% block content %}
     <p>There seems to be nothing here yet - sorry about that!</p>
-    <p><a href="{{ url_for('index_page') }}">Back to Home</a></p>
+    <p><a href="{{ url_for('pages.index_page') }}">Back to Home</a></p>
 {% endblock %}
