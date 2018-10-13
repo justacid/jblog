@@ -17,9 +17,8 @@ def create_database():
         if choice in ["", "n", "no"]:
             print("Did not write a new database!")
             return
-
-    if os.path.isfile("blog.db"):
         os.remove("blog.db")
+
     db._Base.metadata.create_all(db._engine)
 
     # add some dummy data
