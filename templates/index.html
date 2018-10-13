@@ -2,22 +2,33 @@
 
 {% block sidebar %}
     {{ super() }}
-    <div class="toc">
-        <h3>Table of Contents</h3>
-        {{ post.toc|safe }}
-    </div>
+    {% if post %}
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            {{ post.toc|safe }}
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block header %}
-    <h1>{{ post.title }}</h1>
+    {% if post %}
+        <h1>{{ post.title }}</h1>
+    {% else %}
+        <h1>No Posts</h1>
+    {% endif %}
 {% endblock %}
             
 {% block content %}
-    <div class="published">Published: {{ post.published }}</div>
-    {% if post.last_modified %}
-        <div class="last-modified">Last Modified: {{ post.last_modified }}</div>
+    {% if post %}
+        <div class="published">Published: {{ post.published }}</div>
+        {% if post.last_modified %}
+            <div class="last-modified">Last Modified: {{ post.last_modified }}</div>
+        {% endif %}
+        {{ post.html|safe }}
+    {% else %}
+        <h2>Nothing. Nada. Zilch.</h2>
+        There are no posts yet. Maybe come back later?
     {% endif %}
-    {{ post.html|safe }}
 {% endblock %}
 
 {% block infobar %}

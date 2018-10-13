@@ -12,6 +12,10 @@ pages = Blueprint("pages", __name__, template_folder="templates", static_folder=
 def index_page():
     with db.session_context() as session:
         posts = session.query(db.Post).order_by(db.Post.published.desc()).limit(10)
+
+        if posts.count() == 0:
+            return render_template("index.html")
+
         tags = session.query(db.Tag).join(
             db.Post2Tag, db.Tag.rowid == db.Post2Tag.tag_id).filter(
                 db.Post2Tag.post_id == posts[0].rowid).all()
