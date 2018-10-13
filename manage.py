@@ -18,7 +18,8 @@ def create_database():
             print("Did not write a new database!")
             return
 
-    os.remove("blog.db")
+    if os.path.isfile("blog.db"):
+        os.remove("blog.db")
     db._Base.metadata.create_all(db._engine)
 
     # add some dummy data
