@@ -28,6 +28,11 @@
             {% block header %}{% endblock %}
         </div>
         <div id="sidebar-container">
+            {% if current_user.is_authenticated %}
+            <div id="login-status">
+                Logged in as '{{ current_user.username}}' <a href="{{ url_for('login_pages.logout_page') }}">(logout)</a>.
+            </div>
+            {% endif %}
             <div id="sidebar">
                 {% block sidebar %}
                     <div class="navi">

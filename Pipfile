@@ -16,6 +16,7 @@ Werkzeug = "*"
 pip = "==18.0"
 gunicorn = "*"
 sqlalchemy = "*"
+flask-login = "*"
 
 [dev-packages]
 pylint = "*"

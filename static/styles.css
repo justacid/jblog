@@ -88,6 +88,12 @@ a {
     background: #ffffff;
 }
 
+#login-status {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    font-size: 0.8em;
+}
+
 #header {
     grid-column: 2 /span 2;
     border-bottom: solid;

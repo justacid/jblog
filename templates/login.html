@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>justacid.com: login</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Proza+Libre|Open+Sans" rel="stylesheet">
+    <link href="{{ url_for('static', filename='login-styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+    <div id="content">
+        <div id="header">
+            <h1><a href="{{ url_for('pages.index_page') }}">.jblog Login</a></h1>
+        </div>
+        {% if login_failed %}
+            <div id="login-status">
+                Invalid login credentials.
+            </div>
+        {% endif %}
+        <div id ="form">
+            <form method="POST">
+                <div class="row">
+                    <label>username:</label>
+                    <input type="text" name="username" id="username"/>
+                </div>
+                <div class="row">
+                    <label>password:</label>
+                    <input type="password" name="password" id="password"/>
+                </div>
+                <div class="row">
+                    <input id="login-button" type="submit" name="submit"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

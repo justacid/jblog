@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    background: #f7f7f7;
+}
+
+input, label {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+    font-family: 'Indie Flower';
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#header {
+    text-align: center;
+    background: #6a8fb7;
+    padding: 1em;
+}
+
+#content {
+    display: table;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: #ffffff;
+    margin-top: 5em;
+}
+
+#form {
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
+.row {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 1em;
+}
+
+#login-status {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 1em;
+    margin-bottom: -1em;
+    font-size: 0.8em;
+    color: #b93939;
+}
+
+#login-button {
+    background-color: #6a8fb7;
+    border: 1px solid #3e698d;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-top: 1em;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #ffffff;
+}

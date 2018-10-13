@@ -1,12 +1,20 @@
 import argparse
 import os
 
-from flask import Flask, render_template
-from routes import pages
+import flask
+import flask_login
+
+import login
+import routes
 
 
-app = Flask(__name__)
-app.register_blueprint(pages)
+app = flask.Flask(__name__)
+app.register_blueprint(routes.pages)
+app.register_blueprint(login.login_pages)
+
+login_manager = flask_login.LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login_pages.login_page"
 
 app.config.update(
     DEBUG = True,
@@ -23,7 +31,12 @@ app.config.from_pyfile("config.cfg", silent=True)
 # handle 404 errors within the pages blueprint itself
 @app.errorhandler(404)
 def page_not_found(err):
-    return render_template("404.html"), 404
+    return flask.render_template("404.html"), 404
+
+
+@login_manager.user_loader
+def user_loader(user_id):
+    return login.load_user(user_id)
 
 
 def create_deploy_config():
