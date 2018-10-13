@@ -10,7 +10,6 @@ import database as db
 
 
 def create_database():
-    choice = None
     if os.path.isfile("blog.db"):
         print("A database already exists, overwrite? [y/N]")
         choice = input(">> ").lower().strip()
