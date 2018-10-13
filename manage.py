@@ -1,10 +1,37 @@
 import argparse
+import datetime
 import getpass
 import os
+import textwrap
 
 from werkzeug.security import generate_password_hash
 
 import database as db
+
+
+def create_database():
+    choice = None
+    if os.path.isfile("blog.db"):
+        print("A database already exists, overwrite? [y/N]")
+        choice = input(">> ").lower().strip()
+        if choice in ["", "n", "no"]:
+            print("Did not write a new database!")
+            return
+
+    os.remove("blog.db")
+    db._Base.metadata.create_all(db._engine)
+
+    # add some dummy data
+    with db.session_context() as session:
+        timestamp = datetime.datetime.utcnow()
+        text = textwrap.dedent("""\
+            ## Dolor sit amet
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.""")
+        session.add(db.Post(title="Lorem Ipsum", text=text, published=timestamp))
+        session.add(db.Tag(tag="Lorem"))
+        session.add(db.Post2Tag(post_id=1, tag_id=1))
+
+    print("Success: Created new database.")
 
 
 def delete_user_account(username):
@@ -59,7 +86,7 @@ def create_deploy_config():
             "APPLICATION_ROOT = '/'\n",
             "SECRET_KEY = {0}\n".format(os.urandom(16))
         ])
-    print("New config written.")
+    print("Success: New config written.")
 
 
 def main(args):
@@ -69,6 +96,8 @@ def main(args):
         create_user_account(args.create_user_account)
     if args.delete_user_account:
         delete_user_account(args.delete_user_account)
+    if args.create_database:
+        create_database()
 
 
 if __name__ == "__main__":
@@ -82,4 +111,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--delete-user-account", metavar="USERNAME",
         help="Delete the account of a given username.")
+    parser.add_argument(
+        "--create-database", action="store_true",
+        help="Create a new empty database with the required schema.")
     main(parser.parse_args())
