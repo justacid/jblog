@@ -23,9 +23,6 @@ class Post(_Base):
     published = Column(DateTime)
     last_modified = Column(DateTime)
 
-    def __init__(self):
-        super().__init__()
-
     @property
     def html(self):
         md_converter = markdown.Markdown(extensions=[
