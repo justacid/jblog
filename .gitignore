@@ -1,6 +1,10 @@
 # Configs
 config.cfg
 
+### Javascript ###
+node_modules
+index.bundle.js
+
 ### Python ###
 __pycache__/
 *.py[cod]

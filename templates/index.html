@@ -20,7 +20,7 @@
             
 {% block content %}
     {% if post %}
-        <div class="published">Published: {{ post.published }}</div>
+        <div class="published">Published: {{ fdate(post.published) }}</div>
         {% if post.last_modified %}
             <div class="last-modified">Last Modified: {{ post.last_modified }}</div>
         {% endif %}

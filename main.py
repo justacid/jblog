@@ -3,19 +3,23 @@ import os
 
 import flask
 import flask_login
+import jinja2
 
 import login
 import routes
+import util
 
 
 app = flask.Flask(__name__)
 app.register_blueprint(routes.pages)
 app.register_blueprint(login.login_pages)
+app.jinja_env.globals["fdate"] = util.js_format_datetime
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login_pages.login_page"
 
+# Development settings
 app.config.update(
     DEBUG = True,
     APPLICATION_ROOT = "/",
