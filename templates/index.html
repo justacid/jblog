@@ -22,7 +22,7 @@
     {% if post %}
         <div class="published">Published: {{ fdate(post.published) }}</div>
         {% if post.last_modified %}
-            <div class="last-modified">Last Modified: {{ post.last_modified }}</div>
+            <div class="last-modified">Last Modified: {{ fdate(post.last_modified) }}</div>
         {% endif %}
         {{ post.html|safe }}
     {% else %}
