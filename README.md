@@ -53,8 +53,10 @@ a deployment config, which disables debugging and generates a secret key.
 
 ```bash
 python manage.py --create-deploy-config
+pip install -r requirements.txt
 ```
-This generates a `config.cfg` with every everything setup. When this file exists
+
+This generates a `config.cfg` with everything setup. When this file exists
 it automatically gets loaded and overwrites default settings.
 **Warning**: Do *not* commit this file to the git repository.
 
