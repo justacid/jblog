@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>justacid.com: blog</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Proza+Libre|Open+Sans" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='editor.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='preview-code-styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
+
+    <script type="text/javascript" src="{{ url_for('static', filename='index.bundle.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='editor.bundle.js') }}"></script>
+</head>
+<body>
+{% if post_saved %} <div id="post-saved">Post was saved!</div> {% endif %}
+    <div id="grid">
+        <div id="header">
+             <div id="logo">
+                <a href="{{ url_for('pages.index_page') }}"> 
+                    <img src="{{ url_for('static', filename='logo.png') }}"/>
+                </a>
+            </div>
+            <a href="{{ url_for('pages.index_page') }}">.jblog - editor</a>
+        </div>
+        <div id="edit">
+            <form method="POST" autocomplete="off">
+                <div id="edit-title">
+                    <input type="text" name="title" id="input-title" value="{{ post.title }}"/>
+                </div>
+                <textarea rows="0" cols="0" name="post" id="edit-text">{{ post.text }}</textarea>
+                {% if enable_save %}
+                <input id="edit-save" type="submit" name="submit" value="Save"/>
+                {% endif %}
+            </form>
+        </div>
+        <div id="preview">
+            <div id="preview-title"></div>
+            <div class="published">Published: {{ fdate(post.published) }}</div>
+            {% if post.last_modified %}
+                <div class="last-modified">Last Modified: {{ fdate(post.last_modified) }}</div>
+            {% endif %}
+            <div id="preview-markdown">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

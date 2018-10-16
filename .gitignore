@@ -4,6 +4,7 @@ config.cfg
 ### Javascript ###
 node_modules
 index.bundle.js
+editor.bundle.js
 
 ### Python ###
 __pycache__/
