@@ -69,17 +69,35 @@ h2 { font-size: 1.25em; }
 }
 
 #edit-title {
-    padding-bottom: 1em;
-}
-
-#input-title {
+    resize: none;
     border: none;
+    overflow: hidden;
+    width: 100%;
     color: #283a52;
     font-size: 2em;
     font-family: 'Proza Libre', sans-serif;
+    font-weight: bold;
 }
 
-#input-title:focus {
+#edit-title:focus {
+    padding-left: 5px;
+    outline: none;
+    border-left: solid;
+    border-width: 1px;
+    border-color: #5c77c2;
+}
+
+#edit-tags {
+    border: none;
+    resize: none;
+    width: 100%;
+    font-size: 0.9em;
+    color: #5c74b8;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#edit-tags:focus {
     padding-left: 5px;
     outline: none;
     border-left: solid;

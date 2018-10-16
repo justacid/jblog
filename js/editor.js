@@ -2,8 +2,9 @@ import * as MarkdownIt from "markdown-it";
 import * as hljs from "highlightjs";
 
 document.addEventListener("DOMContentLoaded", function() {
-  let title = document.getElementById("input-title");
-  let textarea = document.getElementById("edit-text");
+  let tags = document.getElementById("edit-tags");
+  let title = document.getElementById("edit-title");
+  let post = document.getElementById("edit-text");
   let prev_title = document.getElementById("preview-title");
   let preview = document.getElementById("preview-markdown");
 
@@ -15,22 +16,28 @@ document.addEventListener("DOMContentLoaded", function() {
           return hljs.highlight(lang, str).value;
         } catch (__) {}
       }
-
       return "";
     }
   });
 
-  textarea.oninput = function() {
+  tags.oninput = function() {
     this.style.height = "";
     this.style.height = this.scrollHeight + "px";
+  };
 
-    const markdown = renderer.render(textarea.value);
-    prev_title.innerHTML = "<h1 id='prev-title'>" + title.value + "</h1>";
-    preview.innerHTML = markdown;
+  post.oninput = function() {
+    this.style.height = "";
+    this.style.height = this.scrollHeight + "px";
+    preview.innerHTML = renderer.render(post.value);
   };
 
   title.oninput = function() {
-    textarea.oninput();
+    this.style.height = "";
+    this.style.height = this.scrollHeight + "px";
+    prev_title.innerHTML = "<h1 id='prev-title'>" + title.value + "</h1>";
   };
-  textarea.oninput();
+
+  tags.oninput();
+  title.oninput();
+  post.oninput();
 });

@@ -28,10 +28,9 @@
         </div>
         <div id="edit">
             <form method="POST" autocomplete="off">
-                <div id="edit-title">
-                    <input type="text" name="title" id="input-title" value="{{ post.title }}"/>
-                </div>
-                <textarea rows="0" cols="0" name="post" id="edit-text">{{ post.text }}</textarea>
+                <textarea rows="1" cols="1" name="tags" id="edit-tags">Tag1, Tag2</textarea>
+                <textarea rows="1" cols="1" name="title" id="edit-title">{{ post.title }}</textarea>
+                <textarea rows="1" cols="1" name="post" id="edit-text">{{ post.text }}</textarea>
                 {% if enable_save %}
                 <input id="edit-save" type="submit" name="submit" value="Save"/>
                 {% endif %}
