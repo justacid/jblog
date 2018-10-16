@@ -1,9 +1,8 @@
 from datetime import datetime
 
-from flask import Blueprint, redirect, url_for
+from flask import Blueprint
 from flask import render_template, request, abort
 import flask_login
-from sqlalchemy.sql.expression import func
 from werkzeug.contrib.atom import AtomFeed
 
 import database as db
@@ -37,38 +36,6 @@ def post_page(post_id):
         if post is None:
             abort(404)
         return render_template("post.html", post=post, older_posts=posts, tags=tags)
-
-
-@pages.route("/post/new")
-@flask_login.login_required
-def new_post_page():
-    with db.session_context() as session:
-        max_id = session.query(func.max(db.Post.rowid)).scalar()
-        return redirect(url_for("pages.new_post_id_page", new_id=max_id+1))
-
-
-@pages.route("/post/new/<int:new_id>", methods=["GET", "POST"])
-@flask_login.login_required
-def new_post_id_page(new_id):
-    if request.method == "GET":
-        post_data = { 
-            "title": "New Post",
-            "text": "# New post\n\nEnter a new post here...",
-            "published": datetime.utcnow() 
-        }
-        post = db.Post(**post_data)
-        return render_template("editor.html", post=post, enable_save=True)
-
-    post_data = { 
-        "title": request.form["title"],
-        "text": request.form["post"],
-        "published": datetime.utcnow() 
-    }
-
-    with db.session_context() as session:
-        post = db.Post(**post_data)
-        session.add(post)
-    return render_template("editor.html", post=post, post_saved=True)
 
 
 @pages.route("/feed")

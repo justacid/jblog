@@ -5,14 +5,16 @@ import flask
 import flask_login
 import jinja2
 
+import editor
 import login
-import routes
+import pages
 import util
 
 
 app = flask.Flask(__name__)
-app.register_blueprint(routes.pages)
+app.register_blueprint(pages.pages)
 app.register_blueprint(login.login_pages)
+app.register_blueprint(editor.editor_pages)
 app.jinja_env.globals["fdate"] = util.js_format_datetime
 
 login_manager = flask_login.LoginManager()
