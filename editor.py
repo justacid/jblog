@@ -12,7 +12,7 @@ editor_pages = Blueprint(
 
 
 def insert_tags_for_post(session, tags, post_id):
-    if tags == "Tag1, Tag2":
+    if not tags:
         return
 
     for tag_text in [t.strip() for t in tags.split(",")]:
@@ -35,7 +35,7 @@ def new_post_page():
 
     if request.method == "GET":
         return render_template(
-            "editor.html", post=db.Post(**post_data), tags="Tag1, Tag2", enable_save=True)
+            "editor.html", post=db.Post(**post_data), tags="", enable_save=True)
 
     tags = request.form["tags"]
     post_data["title"] = request.form["title"]
