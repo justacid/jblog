@@ -39,13 +39,19 @@ for changes in the files, but the browser needs to be refreshed manually.
 ### Dependencies
 Fundamentally it works almost the same as the development environment, except
 that most likely pipenv is not available on the server. As a workaround generate
-a requirements.txt locally and use pip to install from there. This will hopefully 
-be uncessary in the future, when pip natively supports pipfiles.
+a requirements.txt locally and use pip to install from there.
 
 ```bash
-pip freeze > requirements.txt
+pipenv lock --requirements
 ```
-You also don't need to install dev dependencies!
+
+Then on the server:
+
+```bash
+source venv/bin/activate
+pip install -r requirements.txt
+npm ci && npm run deploy
+```
 
 ### Database Setup
 Do the same steps as described for the general setup, but additionally create
@@ -53,7 +59,6 @@ a deployment config, which disables debugging and generates a secret key.
 
 ```bash
 python manage.py --create-deploy-config
-pip install -r requirements.txt
 ```
 
 This generates a `config.cfg` with everything setup. When this file exists

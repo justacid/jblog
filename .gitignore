@@ -1,5 +1,6 @@
 # Configs
 config.cfg
+blog.db
 
 ### Javascript ###
 node_modules
