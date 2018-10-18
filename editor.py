@@ -51,6 +51,7 @@ def new_post_page():
 
 
 @editor_pages.route("/edit/id/<int:post_id>", methods=["GET", "POST"])
+@flask_login.login_required
 def edit_post_page(post_id):
     if request.method == "GET":
         with db.session_context() as session:
@@ -84,6 +85,7 @@ def edit_post_page(post_id):
 
 
 @editor_pages.route("/edit/delete/id/<int:post_id>")
+@flask_login.login_required
 def delete_post_page(post_id):
     with db.session_context() as session:
         session.query(db.Post).filter(db.Post.rowid == post_id).delete()
@@ -91,8 +93,10 @@ def delete_post_page(post_id):
 
 
 @editor_pages.route("/edit/delete/tag/id/<int:tag_id>")
+@flask_login.login_required
 def delete_tag_page(tag_id):
     with db.session_context() as session:
         session.query(db.Tag).filter(db.Tag.rowid == tag_id).delete()
         session.query(db.Post2Tag).filter(db.Post2Tag.tag_id == tag_id).delete()
     return redirect(url_for("pages.archive_page"))
+
