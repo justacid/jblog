@@ -4,7 +4,7 @@ import flask_login
 from urllib.parse import urlparse, urljoin
 from werkzeug.security import check_password_hash
 
-import database as db
+from . import database as db
 
 
 login_pages = Blueprint(

@@ -5,7 +5,7 @@ from flask import render_template, request, abort
 import flask_login
 from werkzeug.contrib.atom import AtomFeed
 
-import database as db
+from . import database as db
 
 
 pages = Blueprint("pages", __name__, template_folder="templates", static_folder="static")

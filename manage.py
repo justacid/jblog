@@ -6,7 +6,7 @@ import textwrap
 
 from werkzeug.security import generate_password_hash
 
-import database as db
+from blog import database as db
 
 
 def create_database():

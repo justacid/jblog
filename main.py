@@ -5,10 +5,10 @@ import flask
 import flask_login
 import jinja2
 
-import editor
-import login
-import pages
-import util
+from blog import editor
+from blog import login
+from blog import pages
+from blog import util
 
 
 app = flask.Flask(__name__)

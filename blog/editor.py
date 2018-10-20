@@ -4,7 +4,7 @@ from flask import Blueprint, redirect, url_for
 from flask import render_template, request, abort
 import flask_login
 
-import database as db
+from . import database as db
 
 
 editor_pages = Blueprint(
