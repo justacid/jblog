@@ -1,74 +1,53 @@
 #  jblog
-Personal blog software.
+My personal blog software.
 
-## Install and Setup
+## Development Environment
 
-### Dependencies
-Install the dependencies with pipenv and npm:
+### Dependencies and Database
+Install dependencies and setup database:
+
 ```bash
+# dependencies
 pipenv install && pipenv install --dev
 pipenv shell
 npm ci && npm run build
-```
 
-### Database Setup
-After the dependencies are taken care of, create a database, as well as a user/admin:
-
-```bash
-pipenv shell
+# database
 python manage.py --create-database
 python manage.py --create-user-account myusername
 ```
 
-If necessary (e.g. setting a password) prompts for details will appear during any 
-of those commands. The database will be populated with some dummy data.
+The shell will prompt for details, when necessary (e.g. user password).  
+The database will be populated with some dummy data.
 
 ### Development Server
-Now start the local development server:
+Now start the local development servers in different shells:
 
 ```bash
-pipenv shell
+# run dev server, auto refreshes on save
 python main.py
+
+# auto recompiles javascript on save
+npm run watch
 ```
 
-Browse to `localhost:5000` to view the page. The server automatically listens
-for changes in the files, but the browser needs to be refreshed manually.
+Browse to `localhost:5000` to view the page.
 
-## Deploying to production
+## Deploying
 
-### Dependencies
-Fundamentally it works almost the same as the development environment, except
-that most likely pipenv is not available on the server. As a workaround generate
-a requirements.txt locally and use pip to install from there.
-
+### Dependencies and Database
 ```bash
-pipenv lock --requirements
-```
-
-Then on the server:
-
-```bash
-source venv/bin/activate
-pip install -r requirements.txt
+# dependencies
+pipenv install
+pipenv shell
 npm ci && npm run deploy
-```
 
-### Database Setup
-Do the same steps as described for the general setup, but additionally create
-a deployment config, which disables debugging and generates a secret key. 
-
-```bash
+# database
+python manage.py --create-database
+python manage.py --create-user-account myusername
 python manage.py --create-deploy-config
 ```
+**Warning**: Do *not* commit the `config.cfg` to git!
 
-This generates a `config.cfg` with everything setup. When this file exists
-it automatically gets loaded and overwrites default settings.
-**Warning**: Do *not* commit this file to the git repository.
-
-## Administration
-Except for the operations mentioned before, there is (for now) just one
-more operation supported by `manage.py` - deleting user accounts:
-
-```bash
-python manage.py --delete-user-account myusername
-```
+### Server
+For running the production server, refer to `gunicorn` documentation.
